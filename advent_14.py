@@ -44,8 +44,7 @@ def process_rules_n_times(s: str, rules: Dict[str, str], n: int) -> Counter[str,
 def pair_counts_to_letter_counts(pair_counts: Counter[str, int]) -> Counter[str, int]:
     letter_counts = Counter()
     for pair, count in pair_counts.items():
-        letter_counts[pair[0]] += count / 2  # over 2 because we'll encounter the letter in both positions of the pair
-        letter_counts[pair[1]] += count / 2
+        letter_counts[pair[0]] += count  # each letter shows up in each position of pair, so only count once
     letter_counts.pop("_")
     return letter_counts
 
@@ -57,11 +56,11 @@ if __name__ == "__main__":
     pair_counts = process_rules_n_times(template, rules, 10)
     letter_counts = pair_counts_to_letter_counts(pair_counts)
     solution = max(letter_counts.values()) - min(letter_counts.values())
-    print(f"Solution 14a: {int(solution)}")
+    print(f"Solution 14a: {solution}")
 
     ### Part 2
     pair_counts = process_rules_n_times(template, rules, 40)
     letter_counts = pair_counts_to_letter_counts(pair_counts)
     solution = max(letter_counts.values()) - min(letter_counts.values())
-    print(f"Solution 14b: {int(solution)}")
+    print(f"Solution 14b: {solution}")
 
